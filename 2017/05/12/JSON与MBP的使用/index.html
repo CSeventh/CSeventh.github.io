@@ -95,19 +95,19 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSON与MBP的使用">
 <meta property="og:url" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="DC强">
 <meta property="og:description" content="[TOC] 声明本文章仅供参考，写此博客主要是为了记录本人的iOS学习历程，如果感兴趣的话可以看下源码：GitHub地址 介绍 使用了AFNetworking，以及MBProgressHUD第三方库。 懒加载的使用。  使用首先上主要代码,后面再对部分内容进行扩展： 123456789101112131415161718192021222324252627282930313233343536373">
-<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945675024022.jpg">
-<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945699875204.gif">
-<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945700789305.gif">
-<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945700892193.gif">
-<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945701040358.gif">
-<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945701166895.png">
-<meta property="og:updated_time" content="2017-05-12T07:09:26.000Z">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/0.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/1.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/2.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/3.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/4.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/5.jpeg">
+<meta property="og:updated_time" content="2017-05-12T07:52:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSON与MBP的使用">
 <meta name="twitter:description" content="[TOC] 声明本文章仅供参考，写此博客主要是为了记录本人的iOS学习历程，如果感兴趣的话可以看下源码：GitHub地址 介绍 使用了AFNetworking，以及MBProgressHUD第三方库。 懒加载的使用。  使用首先上主要代码,后面再对部分内容进行扩展： 123456789101112131415161718192021222324252627282930313233343536373">
-<meta name="twitter:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/media/14945661662720/14945675024022.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/0.png">
 
 
 
@@ -141,7 +141,7 @@
 
 
 
-  <title>JSON与MBP的使用 | Hexo</title>
+  <title>JSON与MBP的使用 | DC强</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -177,7 +177,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">DC强</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -289,7 +289,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="DC强">
     </span>
 
     
@@ -374,7 +374,7 @@
 </ul>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先上主要代码,后面再对部分内容进行扩展：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">- (IBAction)get:(id)sender &#123;</div><div class="line">    NSString *URLString=@&quot;http://vedio.wxz.name/api/vedio.html&quot;;</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    ((AFJSONResponseSerializer *)manager.responseSerializer).removesKeysWithNullValues = YES;//有什么作用？  将所有的NSNull值变成nil：json解析的时候，会把null解析成NSNull对象，如果向这个NSNull对象发送消息的话会崩。</div><div class="line">    </div><div class="line">    //设置超时时间</div><div class="line">    [manager.requestSerializer willChangeValueForKey:@&quot;timeoutInterval&quot;];</div><div class="line">    manager.requestSerializer.timeoutInterval = 15;//这个值是什么意思？  网络请求超时时间设置为5s</div><div class="line">    [manager.requestSerializer didChangeValueForKey:@&quot;timeoutInterval&quot;];</div><div class="line"></div><div class="line">    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];</div><div class="line">    hud.label.text = @&quot;加载中...&quot;;</div><div class="line">    //请求</div><div class="line">    [manager GET:URLString parameters:nil progress:nil</div><div class="line">         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)</div><div class="line">         &#123;</div><div class="line">             if ([responseObject[@&quot;msg&quot;] isEqualToString:@&quot;ok&quot;])</div><div class="line">             &#123;</div><div class="line">                 //_datas=[[NSMutableArray alloc]init]; //不使用懒加载的话可以在这里或者GET之前初始化数据</div><div class="line">                 for(NSDictionary *eachDic in responseObject[@&quot;links&quot;])</div><div class="line">                 &#123;</div><div class="line">                     NSLog(@&quot;%@&quot;,eachDic);</div><div class="line">                     Vedio *vedio=[[Vedio alloc]initWithDic:eachDic];</div><div class="line">                     [self.datas addObject:vedio];//换成_datas会怎么样？  懒加载调用 没有初始化不会输出数据</div><div class="line">                     _showButton.hidden=false;  //不隐藏</div><div class="line">                 &#125;</div><div class="line">                 hud.label.text = @&quot;加载成功！&quot;;</div><div class="line">                 [hud hideAnimated:YES afterDelay:0.2];</div><div class="line">             &#125;</div><div class="line">             else</div><div class="line">             &#123;</div><div class="line">                 hud.label.text = @&quot;加载错误！&quot;;</div><div class="line">                 NSLog(@&quot;数据错误&quot;);</div><div class="line">                 [hud hideAnimated:YES afterDelay:0.5];</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)</div><div class="line">         &#123;</div><div class="line">             hud.label.text = @&quot;网络超时&quot;;</div><div class="line">             NSLog(@&quot;网络超时&quot;);</div><div class="line">             [hud hideAnimated:YES afterDelay:0.5];</div><div class="line">         &#125;</div><div class="line">     ];</div><div class="line">&#125;</div><div class="line">- (IBAction)show:(id)sender &#123;</div><div class="line">    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];</div><div class="line">    hud.label.text = @&quot;打印中...&quot;;</div><div class="line">    NSLog(@&quot;%@&quot;,_datas[1]);</div><div class="line">        for (Vedio *vedio in _datas) &#123;</div><div class="line">            NSLog(@&quot;标题:%@，图片:%@&quot;,vedio.name,vedio.img);</div><div class="line">        &#125;</div><div class="line">    [hud hideAnimated:YES afterDelay:0.3];</div><div class="line">&#125;</div><div class="line"></div><div class="line">//为什么要有这个方法？   懒加载</div><div class="line">-(NSMutableArray *)datas&#123;</div><div class="line">    if (!_datas) &#123;</div><div class="line">        _datas=[[NSMutableArray alloc]init];</div><div class="line">    &#125;</div><div class="line">    return _datas;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行界面：<br><img src="media/14945661662720/14945675024022.jpg" alt=""></p>
+<p>运行界面：<br><img src="/2017/05/12/JSON与MBP的使用/0.png" alt=""></p>
 <p>##AFNetworking简介<br>想要进行iOS开发的我，不知道NSUrlRequest、不知道NSUrlConnection、也不知道NSURLSession…（说不下去了…真的什么都不知道…）但是现在只要是请求网络都会想到使用AFN。关于AFN虽然用的次数少，甚至真正的实现还是得参照着别人的代码来写<code>咳！没毛病！</code>。但是还是加深了对AFN的了解，首先是它的优缺点：</p>
 <ol>
 <li><p>优点：</p>
@@ -395,21 +395,20 @@
 <p>##MBProgressHUD简介<br>MBProgressHUD是一个显示HUD窗口的第三方类库，用于在执行一些后台任务时，在程序中显示一个表示进度的loading视图和两个可选的文本提示的HUD窗口。</p>
 <h3 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h3><h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">typedef enum &#123;</div><div class="line">    MBProgressHUDModeIndeterminate,	//系统自带的指示器（默认），没有进度，只能不停的转菊花</div><div class="line">    MBProgressHUDModeDeterminate,	//饼图</div><div class="line">    MBProgressHUDModeDeterminateHorizontalBar,	//进度条</div><div class="line">    MBProgressHUDModeAnnularDeterminate,	//圆环</div><div class="line">    MBProgressHUDModeCustomView,	//自定义视图</div><div class="line">    MBProgressHUDModeText	//只显示文字</div><div class="line">&#125; MBProgressHUDMode;</div></pre></td></tr></table></figure>
 <ul>
-<li>系统自带指示器</li>
+<li>系统自带指示器<br><img src="/2017/05/12/JSON与MBP的使用/1.gif" alt=""></li>
 </ul>
-<p><img src="media/14945661662720/14945699875204.gif" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeIndeterminate;</div></pre></td></tr></table></figure>
 <ul>
-<li><p>饼图<br><img src="media/14945661662720/14945700789305.gif" alt=""></p>
+<li><p>饼图<br><img src="/2017/05/12/JSON与MBP的使用/2.gif" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeDeterminate;</div></pre></td></tr></table></figure>
 </li>
-<li><p>进度条<br><img src="media/14945661662720/14945700892193.gif" alt=""></p>
+<li><p>进度条<br><img src="/2017/05/12/JSON与MBP的使用/3.gif" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeDeterminateHorizontalBar;</div></pre></td></tr></table></figure>
 </li>
-<li><p>圆环<br><img src="media/14945661662720/14945701040358.gif" alt=""></p>
+<li><p>圆环<br><img src="/2017/05/12/JSON与MBP的使用/4.gif" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeAnnularDeterminate;</div></pre></td></tr></table></figure>
 </li>
-<li><p>只显示文字<br><img src="media/14945661662720/14945701166895.png" alt=""></p>
+<li><p>只显示文字<br><img src="/2017/05/12/JSON与MBP的使用/5.jpeg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeText;</div><div class="line">hud.labelText = @&quot;MBProgressHUDModeText&quot;;</div></pre></td></tr></table></figure>
 </li>
 </ul>

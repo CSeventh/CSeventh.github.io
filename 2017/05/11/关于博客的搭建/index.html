@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="经过各种找资料、踩坑、填坑，终于用hexo如果你已经安装了Git，你可以配置一下你的Git环境。你只需要做设置一次，即使之后你升级了Git，他们也会绑定到你的环境中。你也可以在任何时刻通过运行命令来重新更改这些设置。Git有一个工具被称为git config，它允许你获得和设置配置变量；这些变量可以控制Git的外观和操作的各个方面。这些变量可以被存储在三个不同的位置：123* /etc/gitco">
+<meta name="description" content="经过各种找资料、踩坑、填坑，终于用hexo初步把个人博客搭建完成了，不久的将来我也会实装各种有用（装逼）的东西。 配置环境1. 安装Node.js（必须）[Node.js官网](https://nodejs.org/en/)。安装的时候一路next下去就是了。 2. 申请一个你自己的GitHub账号（必须）GitHub官网自行申请账号，实在看不懂就百度吧…申请账号完成后建立与你用户名对应的仓库，仓">
 <meta name="keywords" content="搭建博客">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于HEXO博客的搭建">
 <meta property="og:url" content="http://yoursite.com/2017/05/11/关于博客的搭建/index.html">
 <meta property="og:site_name" content="One Room">
-<meta property="og:description" content="经过各种找资料、踩坑、填坑，终于用hexo如果你已经安装了Git，你可以配置一下你的Git环境。你只需要做设置一次，即使之后你升级了Git，他们也会绑定到你的环境中。你也可以在任何时刻通过运行命令来重新更改这些设置。Git有一个工具被称为git config，它允许你获得和设置配置变量；这些变量可以控制Git的外观和操作的各个方面。这些变量可以被存储在三个不同的位置：123* /etc/gitco">
-<meta property="og:updated_time" content="2017-05-12T08:37:58.000Z">
+<meta property="og:description" content="经过各种找资料、踩坑、填坑，终于用hexo初步把个人博客搭建完成了，不久的将来我也会实装各种有用（装逼）的东西。 配置环境1. 安装Node.js（必须）[Node.js官网](https://nodejs.org/en/)。安装的时候一路next下去就是了。 2. 申请一个你自己的GitHub账号（必须）GitHub官网自行申请账号，实在看不懂就百度吧…申请账号完成后建立与你用户名对应的仓库，仓">
+<meta property="og:updated_time" content="2017-05-12T11:01:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于HEXO博客的搭建">
-<meta name="twitter:description" content="经过各种找资料、踩坑、填坑，终于用hexo如果你已经安装了Git，你可以配置一下你的Git环境。你只需要做设置一次，即使之后你升级了Git，他们也会绑定到你的环境中。你也可以在任何时刻通过运行命令来重新更改这些设置。Git有一个工具被称为git config，它允许你获得和设置配置变量；这些变量可以控制Git的外观和操作的各个方面。这些变量可以被存储在三个不同的位置：123* /etc/gitco">
+<meta name="twitter:description" content="经过各种找资料、踩坑、填坑，终于用hexo初步把个人博客搭建完成了，不久的将来我也会实装各种有用（装逼）的东西。 配置环境1. 安装Node.js（必须）[Node.js官网](https://nodejs.org/en/)。安装的时候一路next下去就是了。 2. 申请一个你自己的GitHub账号（必须）GitHub官网自行申请账号，实在看不懂就百度吧…申请账号完成后建立与你用户名对应的仓库，仓">
 
 
 
@@ -359,7 +359,11 @@
       
 
       
-        <p>经过各种找资料、踩坑、填坑，终于用hexo<br>如果你已经安装了Git，你可以配置一下你的Git环境。你只需要做设置一次，即使之后你升级了Git，他们也会绑定到你的环境中。你也可以在任何时刻通过运行命令来重新更改这些设置。<br>Git有一个工具被称为git config，它允许你获得和设置配置变量；这些变量可以控制Git的外观和操作的各个方面。这些变量可以被存储在三个不同的位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* /etc/gitconfig 文件：包含了适用于系统所有用户和所有库的值。如果你传递参数选项’--system’ 给 git config，它将明确的读和写这个文件。  </div><div class="line">* ~/.gitconfig 文件 ：具体到你的用户。你可以通过传递--global 选项使Git 读或写这个特定的文件。</div><div class="line">*  位于git目录的config文件 (也就是 .git/config)：无论你当前在用的库是什么，特定指向该单一的库。每个级别重写前一个级别的值。因此，在.git/config中的值覆盖了在/etc/gitconfig中的同一个值。</div></pre></td></tr></table></figure></p>
+        <p>经过各种找资料、踩坑、填坑，终于用hexo初步把个人博客搭建完成了，不久的将来我也会实装各种有用（装逼）的东西。</p>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><h3 id="1-安装Node-js（必须）"><a href="#1-安装Node-js（必须）" class="headerlink" title="1. 安装Node.js（必须）"></a>1. <strong>安装Node.js（必须）</strong></h3><pre><code>[Node.js官网](https://nodejs.org/en/)。安装的时候一路next下去就是了。
+</code></pre><h3 id="2-申请一个你自己的GitHub账号（必须）"><a href="#2-申请一个你自己的GitHub账号（必须）" class="headerlink" title="2. 申请一个你自己的GitHub账号（必须）"></a>2. <strong>申请一个你自己的GitHub账号（必须）</strong></h3><p><a href="https://github.com" target="_blank" rel="external">GitHub官网</a>自行申请账号，实在看不懂就百度吧…<br>申请账号完成后建立与你用户名对应的仓库，仓库名为<code>你的用户名.github.io</code>。</p>
+<h3 id="3-安装Git（必须）"><a href="#3-安装Git（必须）" class="headerlink" title="3. 安装Git（必须）"></a>3. <strong>安装Git（必须）</strong></h3><pre><code>[Git官网](https://git-scm.com/downloads)。
+</code></pre><p>这里多说几句。如果你已经安装了Git，你可以配置一下你的Git环境。你只需要做设置一次，即使之后你升级了Git，他们也会绑定到你的环境中。你也可以在任何时刻通过运行命令来重新更改这些设置。<br>Git有一个工具被称为<code>git config</code>，它允许你获得和设置配置变量；这些变量可以控制Git的外观和操作的各个方面。这些变量可以被存储在三个不同的位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">* /etc/gitconfig 文件：包含了适用于系统所有用户和所有库的值。如果你传递参数选项’--system’ 给 git config，它将明确的读和写这个文件。  </div><div class="line">* ~/.gitconfig 文件 ：具体到你的用户。你可以通过传递--global 选项使Git 读或写这个特定的文件。</div><div class="line">*  位于git目录的config文件 (也就是 .git/config)：无论你当前在用的库是什么，特定指向该单一的库。每个级别重写前一个级别的值。因此，在.git/config中的值覆盖了在/etc/gitconfig中的同一个值。</div></pre></td></tr></table></figure></p>
 <p>当你安装Git后首先要做的事情是设置你的用户名称和e-mail地址。这是非常重要的，因为每次Git提交都会使用该信息。它被永远的嵌入到了你的提交中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">* git config --global user.name &quot;David&quot;</div><div class="line">* git config --global user.email David@example.com</div></pre></td></tr></table></figure></p>
 <p>这里<code>David</code>指的是你的GitHub的用户名，<code>David@example.com</code>指的是你GitHub绑定的邮箱地址。</p>
 <blockquote>
@@ -369,7 +373,33 @@
 <li>当然如果你不想使用命令行来设置的话也可以直接更改项目主页里的<code>.git/config</code>这个文件的内容。</li>
 </ol>
 </blockquote>
-<p><strong><em>未完待续…</em></strong></p>
+<h3 id="4-正式安装Hexo"><a href="#4-正式安装Hexo" class="headerlink" title="4. 正式安装Hexo"></a>4. 正式安装Hexo</h3><p>Node和Git都安装好后,首先创建一个文件夹,如blog,用来存放hexo的配置文件,然后使用命令行（MAC用终端，Windows用CMD）cd到blog文件夹里安装Hexo：</p>
+<pre><code>* 执行如下命令安装Hexo：
+</code></pre><p><code>sudo npm install -g hexo</code></p>
+<pre><code>* 然后执行init命令初始化hexo,命令：
+</code></pre><p><code>hexo init</code><br>目前为止，全部安装工作已经完成！blog就是你的博客根目录，所有的操作都在里面进行。</p>
+<pre><code>* 生成静态页面
+</code></pre><p><code>hexo generate（或者hexo g）</code></p>
+<pre><code>* 启动本地服务，进行文章预览调试，命令：
+</code></pre><p><code>hexo server（或者hexo s）</code></p>
+<p>浏览器输入<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>就可以查看你本地生成的静态页面啦~</p>
+<h3 id="5-配置文件"><a href="#5-配置文件" class="headerlink" title="5. 配置文件"></a>5. 配置文件</h3><p>现在我们进入到我们的blog文件夹中，可以看到一个<code>_config.yml</code>文件，现在我们要开始蹂躏他了！<br>命令：</p>
+<p><code>vim _config.yml</code></p>
+<p>翻到最下面,改成下面的样子，注意一个事-&gt;每一个<code>：</code>后面都需要有一个空格（不要问我https后面的冒号需不需要空格，我不想理你- -）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git		//有的是github</div><div class="line">  repo: https://github.com/CSeventh/CSeventh.github.io.git		//我的用户名是CSeventh，所以你只需要把这两个CSeventh改成你自己的用户名就好啦。</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<p>当然，如果你用了SSH Keys的话就直接在github里复制SSH的就行了。最后执行部署命令：</p>
+<p><code>hexo deploy(或者hexo d)</code></p>
+<p>最后直接在浏览器中输入<code>你的用户名.github.io</code>就可以看到你自己的博客啦</p>
+<h3 id="6-部署命令"><a href="#6-部署命令" class="headerlink" title="6. 部署命令"></a>6. 部署命令</h3><p>每次部署（提交新的东西，做了更改啊什么什么的），可以分三步进行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo g</div><div class="line">hexo d</div></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li>一些常用命令：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot; //新建文章</div><div class="line">hexo new page &quot;pageName&quot; //新建页面</div><div class="line">hexo generate //生成静态页面至public目录</div><div class="line">hexo server //开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo deploy //将.deploy目录部署到GitHub</div><div class="line">hexo help  //查看帮助</div><div class="line">hexo version  //查看Hexo的版本</div></pre></td></tr></table></figure>
+<ul>
+<li>一些简单的信息</li>
+</ul>
+<p>首先是博客的配置文件，就是blog文件夹里的<code>_config.yml</code>，我们叫这个为<code>站点配置文件</code>，后面会讲到主题里面也有个<code>_config.yml</code>，那个叫<code>主题配置文件</code>。</p>
+<p><strong><em>其他的下次再写吧，有点累了~</em></strong></p>
 
       
     </div>
@@ -471,8 +501,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -534,6 +573,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">1.</span> <span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装Node-js（必须）"><span class="nav-number">1.1.</span> <span class="nav-text">1. 安装Node.js（必须）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-申请一个你自己的GitHub账号（必须）"><span class="nav-number">1.2.</span> <span class="nav-text">2. 申请一个你自己的GitHub账号（必须）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-安装Git（必须）"><span class="nav-number">1.3.</span> <span class="nav-text">3. 安装Git（必须）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-正式安装Hexo"><span class="nav-number">1.4.</span> <span class="nav-text">4. 正式安装Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-配置文件"><span class="nav-number">1.5.</span> <span class="nav-text">5. 配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-部署命令"><span class="nav-number">1.6.</span> <span class="nav-text">6. 部署命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">2.</span> <span class="nav-text">其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

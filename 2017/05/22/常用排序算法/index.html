@@ -1,0 +1,839 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习随笔," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="写在开头 虽然主要在学习iOS，但是越来越感觉，或许iOS的学习真的不需要去死磕，其他的东西同样需要去多看看。本文主要参考于常用排序算法总结(一) 结合了visualgo通过动画来学习，另外，visualgo也可以用来学习数据结构，简直是神器。 学习阶段:5.6-5.2X  内部排序　　通过一定时间的学习，可以知道内部排序是指待排序列完全存放在内存中所进行的排序过程，适合不太大的元素序列。排序是计">
+<meta name="keywords" content="学习随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用排序算法">
+<meta property="og:url" content="http://yoursite.com/2017/05/22/常用排序算法/index.html">
+<meta property="og:site_name" content="One Room">
+<meta property="og:description" content="写在开头 虽然主要在学习iOS，但是越来越感觉，或许iOS的学习真的不需要去死磕，其他的东西同样需要去多看看。本文主要参考于常用排序算法总结(一) 结合了visualgo通过动画来学习，另外，visualgo也可以用来学习数据结构，简直是神器。 学习阶段:5.6-5.2X  内部排序　　通过一定时间的学习，可以知道内部排序是指待排序列完全存放在内存中所进行的排序过程，适合不太大的元素序列。排序是计">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/001.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/002.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/003.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/004.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/005.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/006.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/007.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/008.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/009.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/22/常用排序算法/010.gif">
+<meta property="og:updated_time" content="2017-05-24T13:19:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用排序算法">
+<meta name="twitter:description" content="写在开头 虽然主要在学习iOS，但是越来越感觉，或许iOS的学习真的不需要去死磕，其他的东西同样需要去多看看。本文主要参考于常用排序算法总结(一) 结合了visualgo通过动画来学习，另外，visualgo也可以用来学习数据结构，简直是神器。 学习阶段:5.6-5.2X  内部排序　　通过一定时间的学习，可以知道内部排序是指待排序列完全存放在内存中所进行的排序过程，适合不太大的元素序列。排序是计">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/22/常用排序算法/001.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/22/常用排序算法/"/>
+
+
+
+
+
+  <title>常用排序算法 | One Room</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">One Room</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个人没什么不能征服。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/22/常用排序算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CSeventh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Room">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用排序算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-22T19:53:34+08:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/05/22/常用排序算法/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/22/常用排序算法/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="写在开头"><a href="#写在开头" class="headerlink" title="写在开头"></a>写在开头</h2><ul>
+<li>虽然主要在学习iOS，但是越来越感觉，或许iOS的学习真的不需要去死磕，其他的东西同样需要去多看看。本文主要参考于<a href="http://www.cnblogs.com/eniac12/p/5329396.html#s4" target="_blank" rel="external">常用排序算法总结(一)</a></li>
+<li>结合了<a href="https://visualgo.net/zh" target="_blank" rel="external">visualgo</a>通过动画来学习，另外，<a href="https://visualgo.net/zh" target="_blank" rel="external">visualgo</a>也可以用来学习数据结构，简直是神器。</li>
+<li>学习阶段:5.6-5.2X</li>
+</ul>
+<h2 id="内部排序"><a href="#内部排序" class="headerlink" title="内部排序"></a>内部排序</h2><p>　　通过一定时间的学习，可以知道内部排序是指待排序列完全存放在内存中所进行的排序过程，适合不太大的元素序列。<br>排序是计算机程序设计中的一种重要操作，其功能是对一个数据元素集合或序列重新排列成一个按数据元素某个相知有序的序列。排序分为两类：内排序和外排序。<br>其中快速排序的是目前排序方法中被认为是最好的方法。<br>内部排序方法：</p>
+<ol>
+<li>插入排序（直接插入排序）；</li>
+<li>快速排序；</li>
+<li>选择排序（简单选择排序）；</li>
+<li>归并排序</li>
+<li>冒泡排序；</li>
+<li>希尔排序（希尔排序是对直接插入排序方法的改进）；</li>
+<li>堆排序；</li>
+</ol>
+<h2 id="排序算法的稳定性（腾讯校招2016笔试题曾考过）"><a href="#排序算法的稳定性（腾讯校招2016笔试题曾考过）" class="headerlink" title="排序算法的稳定性（腾讯校招2016笔试题曾考过）"></a>排序算法的稳定性（腾讯校招2016笔试题曾考过）</h2><p>　　排序算法稳定性的简单形式定义为：如果A<sub>i</sub>=A<sub>j</sub>，排序前A<sub>i</sub>在A<sub>j</sub>之前，排序后A<sub>i</sub>还在A<sub>j</sub>之前，则称这种排序算法是稳定的。通俗地讲就是保证排序前后两个相等的数的相对顺序不变。<br>　　对于不稳定的排序算法只要举出一个实例，即可说明它的不稳定性；而对于稳定的排序算法，必须对算法进行分析从而得到稳定的特性。需要注意的是，排序算法是否为稳定的是由具体算法决定的，不稳定的算法在某种条件下可以变为稳定的算法，而稳定的算法在某种条件下也可以变为不稳定的算法。</p>
+<p>　　例如，对于冒泡排序，原本是稳定的排序算法，如果将记录交换的条件改成A[i]&gt;= A[i+1]，则两个相等的记录就会交换位置，从而变成不稳定的排序算法。</p>
+<p>　　其次，说一下排序算法稳定性的好处。排序算法如果是稳定的，那么从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。基数排序就是这样，先按低位排序，逐次按高位排序，低位排序后元素的顺序在高位也相同时是不会改变的。</p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><p>　　首先是我最先接触的冒泡排序，早在我刚接触C语言的时候就知道了这个排序算法，这个算法的名字由来是因为越大（越小）的元素会经由交换慢慢“浮”到数列的顶端。<br>冒泡排序算法的运作如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1. 比较相邻的元素，如果前一个比后一个大，就把它们两个调换位置。</div><div class="line">2. 对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。这步做完后，最后的元素会是最大的数。</div><div class="line">3. 针对所有的元素重复以上的步骤，除了最后一个。</div><div class="line">4. 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</div></pre></td></tr></table></figure>
+<p>　　由于它的简洁，冒泡排序通常被用来对于程序设计入门的学生介绍算法的概念。冒泡排序的代码如下：<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">// 分类 -------------- 内部比较排序</div><div class="line">// 数据结构 ---------- 数组</div><div class="line">// 最差时间复杂度 ---- O(n^2)</div><div class="line">// 最优时间复杂度 ---- 如果能在内部循环第一次运行时,使用一个旗标来表示有无需要交换的可能,可以把最优时间复杂度降低到O(n)</div><div class="line">// 平均时间复杂度 ---- O(n^2)</div><div class="line">// 所需辅助空间 ------ O(1)</div><div class="line">// 稳定性 ------------ 稳定</div><div class="line"></div><div class="line">void exchange(int A[], int i, int j)        // 交换A[i]和A[j]</div><div class="line">&#123;</div><div class="line">    int temp = A[i];</div><div class="line">    A[i] = A[j];</div><div class="line">    A[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int A[] = &#123; 6, 5, 3, 1, 8, 7, 2, 4 &#125;;    // 从小到大冒泡排序</div><div class="line">    int n = sizeof(A) / sizeof(int);                </div><div class="line">    for (int j = 0; j &lt; n - 1; j++)            // 每次最大元素就像气泡一样&quot;浮&quot;到数组的最后</div><div class="line">    &#123;</div><div class="line">        for (int i = 0; i &lt; n - 1 - j; i++)    // 依次比较相邻的两个元素,使较大的那个向后移</div><div class="line">        &#123;</div><div class="line">            if (A[i] &gt; A[i + 1])            // 如果条件改成A[i] &gt;= A[i + 1],则变为不稳定的排序算法</div><div class="line">            &#123;</div><div class="line">                exchange(A, i, i + 1);        </div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    printf(&quot;冒泡排序结果：&quot;);</div><div class="line">    for (int i = 0; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;, A[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>图解：<br><img src="/2017/05/22/常用排序算法/001.gif" alt=""><br><img src="/2017/05/22/常用排序算法/002.gif" alt=""></p>
+<p>　　尽管冒泡排序是最容易了解和实现的排序算法之一，但它对于少数元素之外的数列排序是很没有效率的。</p>
+<h2 id="冒泡排序的改进：鸡尾酒排序"><a href="#冒泡排序的改进：鸡尾酒排序" class="headerlink" title="冒泡排序的改进：鸡尾酒排序"></a>冒泡排序的改进：鸡尾酒排序</h2><p>　　鸡尾酒排序，也叫定向冒泡排序，是冒泡排序的一种改进。此算法与冒泡排序的不同处在于从低到高然后从高到低，而冒泡排序只会从一个方向去比较序数组里的每个元素。他可以得到比冒泡排序稍微好一点的效能。<br>　　鸡尾酒排序的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">// 分类 -------------- 内部比较排序</div><div class="line">// 数据结构 ---------- 数组</div><div class="line">// 最差时间复杂度 ---- O(n^2)</div><div class="line">// 最优时间复杂度 ---- 如果序列在一开始已经大部分排序过的话,会接近O(n)</div><div class="line">// 平均时间复杂度 ---- O(n^2)</div><div class="line">// 所需辅助空间 ------ O(1)</div><div class="line">// 稳定性 ------------ 稳定</div><div class="line"></div><div class="line">void exchange(int A[], int i, int j)        // 交换A[i]和A[j]</div><div class="line">&#123;</div><div class="line">    int temp = A[i];</div><div class="line">    A[i] = A[j];</div><div class="line">    A[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int A[] = &#123; 6, 5, 3, 1, 8, 7, 2, 4 &#125;;   // 从小到大定向冒泡排序</div><div class="line">    int n = sizeof(A) / sizeof(int);                </div><div class="line">    int left = 0;                           // 初始化边界</div><div class="line">    int right = n - 1;</div><div class="line">    while (left &lt; right)</div><div class="line">    &#123;</div><div class="line">        for (int i = left; i &lt; right; i++)  // 前半轮,将最大元素放到后面</div><div class="line">            if (A[i] &gt; A[i + 1]) </div><div class="line">            &#123;</div><div class="line">                exchange(A, i, i + 1);</div><div class="line">            &#125;</div><div class="line">        right--;</div><div class="line">        for (int i = right; i &gt; left; i--)  // 后半轮,将最小元素放到前面</div><div class="line">            if (A[i - 1] &gt; A[i]) </div><div class="line">            &#123;</div><div class="line">                exchange(A, i - 1, i);</div><div class="line">            &#125;</div><div class="line">        left++;</div><div class="line">    &#125;</div><div class="line">    printf(&quot;鸡尾酒排序结果：&quot;);</div><div class="line">    for (int i = 0; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;, A[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>图解：<br><img src="/2017/05/22/常用排序算法/003.gif" alt=""></p>
+<p>　　相比于冒泡排序，序列(2,3,4,5,1)，鸡尾酒排序只需要访问一次序列就可以完成排序，但如果使用冒泡排序则需要四次。但是在乱数序列的状态下，鸡尾酒排序与冒泡排序的效率都很差劲。</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>　　选择排序理解起来也很简单。首先在序列中寻找最小（大）元素，放到序列的开头（末尾），再从剩下的序列中寻找最小（大）的元素，放到序列的开头（末尾），直到序列有序。<br>　　代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">// 分类 -------------- 内部比较排序</div><div class="line">// 数据结构 ---------- 数组</div><div class="line">// 最差时间复杂度 ---- O(n^2)</div><div class="line">// 最优时间复杂度 ---- O(n^2)</div><div class="line">// 平均时间复杂度 ---- O(n^2)</div><div class="line">// 所需辅助空间 ------ O(1)</div><div class="line">// 稳定性 ------------ 不稳定</div><div class="line"></div><div class="line">void exchange(int A[], int i, int j)        // 交换A[i]和A[j]</div><div class="line">&#123;</div><div class="line">    int temp = A[i];</div><div class="line">    A[i] = A[j];</div><div class="line">    A[j] = temp;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int A[] = &#123; 8, 5, 2, 6, 9, 3, 1, 4, 0, 7 &#125;; // 从小到大选择排序</div><div class="line">    int n = sizeof(A) / sizeof(int);</div><div class="line">    int i, j, min;</div><div class="line">    for (i = 0; i &lt;= n - 2; i++)                // 已排序序列的末尾</div><div class="line">    &#123;</div><div class="line">        min = i;    </div><div class="line">        for (j = i + 1; j &lt;= n - 1; j++)        // 未排序序列</div><div class="line">        &#123;</div><div class="line">            if (A[j] &lt; A[min])// 依次找出未排序序列中的最小值,存放到已排序序列的末尾</div><div class="line">            &#123;</div><div class="line">                min = j;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if (min != i)</div><div class="line">        &#123;</div><div class="line">            exchange(A, min, i);    // 该操作很有可能把稳定性打乱,所以选择排序是不稳定的排序算法</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    printf(&quot;选择排序结果：&quot;);</div><div class="line">    for (i = 0; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;,A[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>图解：<br><img src="/2017/05/22/常用排序算法/004.gif" alt=""></p>
+<p>我们很容易就能发现<strong>选择排序是不稳定的排序算法，不稳定发生在最小元素与A[i]交换的时刻</strong>。</p>
+<h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>插入排序也属于一种很简单的排序。</p>
+<p>插入排序算法的运作如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">1. 从第一个元素开始，该元素可以认为已经被排序</div><div class="line">2. 取出下一个元素，在已经排序的元素序列中从后向前扫描</div><div class="line">3. 如果该元素（已排序）大于新元素，将该元素移到下一位置</div><div class="line">4. 重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</div><div class="line">5. 将新元素插入到该位置后</div><div class="line">6. 重复步骤2~5</div></pre></td></tr></table></figure>
+<p>　　代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">// 分类 ------------- 内部比较排序</div><div class="line">// 数据结构 ---------- 数组</div><div class="line">// 最差时间复杂度 ---- 最坏情况为输入序列是降序排列的,此时时间复杂度O(n^2)</div><div class="line">// 最优时间复杂度 ---- 最好情况为输入序列是升序排列的,此时时间复杂度O(n)</div><div class="line">// 平均时间复杂度 ---- O(n^2)</div><div class="line">// 所需辅助空间 ------ O(1)</div><div class="line">// 稳定性 ------------ 稳定</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int A[] = &#123; 6, 5, 3, 1, 8, 7, 2, 4 &#125;;// 从小到大插入排序</div><div class="line">    int n = sizeof(A) / sizeof(int);</div><div class="line">    int i, j, get;</div><div class="line"></div><div class="line">    for (i = 1; i &lt; n; i++)             // 类似抓扑克牌排序</div><div class="line">    &#123;</div><div class="line">        get = A[i];                     // 右手抓到一张扑克牌</div><div class="line">        j = i - 1;                      // 拿在左手上的牌总是排序好的</div><div class="line">        while (j &gt;= 0 &amp;&amp; A[j] &gt; get)    // 将抓到的牌与手牌从右向左进行比较</div><div class="line">        &#123;</div><div class="line">            A[j + 1] = A[j];            // 如果该手牌比抓到的牌大,就将其右移</div><div class="line">            j--;</div><div class="line">        &#125;</div><div class="line">        A[j + 1] = get;// 直到该手牌比抓到的牌小(或二者相等),将抓到的牌插入到该手牌右边(相等元素的相对次序未变,所以插入排序是稳定的)</div><div class="line">    &#125;</div><div class="line">    printf(&quot;插入排序结果：&quot;);</div><div class="line">    for (i = 0; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;, A[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>图解：<br><img src="/2017/05/22/常用排序算法/005.gif" alt=""></p>
+<p>　　插入排序不适合对于数据量比较大的排序应用。但是，如果需要排序的数据量很小，比如量级小于千，那么插入排序还是一个不错的选择。 插入排序在工业级库中也有着广泛的应用，在STL的sort算法和stdlib的qsort算法（？？？）中，都将插入排序作为快速排序的补充，用于少量元素的排序（通常为8个或以下）。</p>
+<h2 id="插入排序的改进：二分插入排序"><a href="#插入排序的改进：二分插入排序" class="headerlink" title="插入排序的改进：二分插入排序"></a>插入排序的改进：二分插入排序</h2><p>　　对于插入排序，如果比较操作的代价比交换操作大的话，可以采用二分查找法来减少比较操作的数目，我们称为二分插入排序。<br>　　代码如下：<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line"></div><div class="line">// 分类 -------------- 内部比较排序</div><div class="line">// 数据结构 ---------- 数组</div><div class="line">// 最差时间复杂度 ---- O(n^2)</div><div class="line">// 最优时间复杂度 ---- O(nlogn)</div><div class="line">// 平均时间复杂度 ---- O(n^2)</div><div class="line">// 所需辅助空间 ------ O(1)</div><div class="line">// 稳定性 ------------ 稳定</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int A[] = &#123; 5, 2, 9, 4, 7, 6, 1, 3, 8 &#125;;// 从小到大二分插入排序</div><div class="line">    int n = sizeof(A) / sizeof(int);</div><div class="line">    int i, j, get, left, right, middle;</div><div class="line">    </div><div class="line">    for (i = 1; i &lt; n; i++)                 // 类似抓扑克牌排序</div><div class="line">    &#123;</div><div class="line">        get = A[i];                         // 右手抓到一张扑克牌</div><div class="line">        left = 0;                           // 拿在左手上的牌总是排序好的,所以可以用二分法</div><div class="line">        right = i - 1;                      // 手牌左右边界进行初始化</div><div class="line">        while (left &lt;= right)               // 采用二分法定位新牌的位置</div><div class="line">        &#123;</div><div class="line">            middle = (left + right) / 2;</div><div class="line">            if (A[middle] &gt; get)</div><div class="line">                right = middle - 1;</div><div class="line">            else</div><div class="line">                left = middle + 1;</div><div class="line">        &#125;</div><div class="line">        for (j = i - 1; j &gt;= left; j--)    // 将欲插入新牌位置右边的牌整体向右移动一个单位</div><div class="line">        &#123;</div><div class="line">            A[j + 1] = A[j];            </div><div class="line">        &#125;</div><div class="line">        A[left] = get;                    // 将抓到的牌插入手牌</div><div class="line">    &#125;</div><div class="line">    printf(&quot;二分插入排序结果：&quot;);</div><div class="line">    for (i = 0; i &lt; n; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;, A[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　当n较大时，二分插入排序的比较次数比直接插入排序的最差情况好得多，但比直接插入排序的最好情况要差，所当以元素初始序列已经接近升序时，直接插入排序比二分插入排序比较次数少。二分插入排序元素移动次数与直接插入排序相同，依赖于元素初始序列。
+　　</p>
+<h2 id="插入排序的更高效改进：希尔排序"><a href="#插入排序的更高效改进：希尔排序" class="headerlink" title="插入排序的更高效改进：希尔排序"></a>插入排序的更高效改进：希尔排序</h2><p>　　希尔排序，也叫<strong>递减增量排序</strong>，是插入排序的一种更高效的改进版本。希尔排序是<strong>不稳定</strong>的排序算法。<br>　　希尔排序是基于插入排序的以下两点性质而提出改进方法的：</p>
+<ul>
+<li>插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到线性排序的效率</li>
+<li>但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位</li>
+</ul>
+<p>　　该方法的基本思想是：先将整个待排元素序列分割成若干个子序列（由相隔某个“增量”的元素组成的）分别进行直接插入排序，然后依次缩减增量再进行排序，待整个序列中的元素基本有序（增量足够小）时，再对全体元素进行一次直接插入排序。因为直接插入排序在元素基本有序的情况下（接近最好情况），效率是很高的，因此希尔排序在时间效率上比前两种方法有较大提高。</p>
+<p>以n=10的一个数组（49, 38, 65, 97, 26, 13, 27, 49, 55, 4）为例：<br>第一次 gap=10/2=5<br><img src="/2017/05/22/常用排序算法/006.png" alt=""></p>
+<p>第二次 gap=5/2=2    排序后：<br><img src="/2017/05/22/常用排序算法/007.png" alt=""></p>
+<p>第三次 gap=2/2=1<br><img src="/2017/05/22/常用排序算法/008.png" alt=""></p>
+<p>第四次 gap=1/2=0    排序完成<br><img src="/2017/05/22/常用排序算法/009.png" alt=""></p>
+<p>　　希尔排序的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">void shellsort1(int a[], int n)  </div><div class="line">&#123;  </div><div class="line">    int i, j, gap;  </div><div class="line">  </div><div class="line">    for (gap = n / 2; gap &gt; 0; gap /= 2) //步长  </div><div class="line">        for (i = 0; i &lt; gap; i++)        //直接插入排序  </div><div class="line">        &#123;  </div><div class="line">            for (j = i + gap; j &lt; n; j += gap)   </div><div class="line">                if (a[j] &lt; a[j - gap])  </div><div class="line">                &#123;  </div><div class="line">                    int temp = a[j];  </div><div class="line">                    int k = j - gap;  </div><div class="line">                    while (k &gt;= 0 &amp;&amp; a[k] &gt; temp)  </div><div class="line">                    &#123;  </div><div class="line">                        a[k + gap] = a[k];  </div><div class="line">                        k -= gap;  </div><div class="line">                    &#125;  </div><div class="line">                    a[k + gap] = temp;  </div><div class="line">                &#125;  </div><div class="line">        &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>　　很明显，上面的shellsort1代码虽然对直观的理解希尔排序有帮助，但代码量太大了，不够简洁清晰。因此进行下改进和优化，以第二次排序为例，原来是每次从1A到1E，从2A到2E，可以改成从1B开始，先和1A比较，然后取2B与2A比较，再取1C与前面自己组内的数据比较…….。这种每次从数组第gap个元素开始，每个元素与自己组内的数据进行直接插入排序显然也是正确的。<br>　　<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">void shellsort2(int a[], int n)  </div><div class="line">&#123;  </div><div class="line">    int j, gap;  </div><div class="line">      </div><div class="line">    for (gap = n / 2; gap &gt; 0; gap /= 2)  </div><div class="line">        for (j = gap; j &lt; n; j++)//从数组第gap个元素开始  </div><div class="line">            if (a[j] &lt; a[j - gap])//每个元素与自己组内的数据进行直接插入排序  </div><div class="line">            &#123;  </div><div class="line">                int temp = a[j];  </div><div class="line">                int k = j - gap;  </div><div class="line">                while (k &gt;= 0 &amp;&amp; a[k] &gt; temp)  </div><div class="line">                &#123;  </div><div class="line">                    a[k + gap] = a[k];  </div><div class="line">                    k -= gap;  </div><div class="line">                &#125;  </div><div class="line">                a[k + gap] = temp;  </div><div class="line">            &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样代码就变得很简洁了。<br>此处引用了CSDN博客：<a href="http://blog.csdn.net/morewindows/article/details/6668714#" target="_blank" rel="external">白话经典算法系列之三 希尔排序的实现</a>。</p>
+<p>事实上在我们使用的时候步长（gap）是有多种选择的，也可以有另外的更高效的步长选择。</p>
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><p>归并排序是创建在归并操作上的一种有效的排序算法，效率为O(nlogn)，1945年由冯·诺伊曼首次提出。</p>
+<p>　　归并排序的实现分为递归实现与非递归(迭代)实现。递归实现的归并排序是算法设计中分治策略的典型应用，我们将一个大问题分割成小问题分别解决，然后用所有小问题的答案来解决整个大问题。非递归(迭代)实现的归并排序首先进行是两两归并，然后四四归并，然后是八八归并，一直下去直到归并了整个数组。</p>
+<p>　　归并排序算法主要依赖归并(Merge)操作。归并操作指的是将两个已经排序的序列合并成一个序列的操作,归并操作步骤如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1. 申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列</div><div class="line">2. 设定两个指针，最初位置分别为两个已经排序序列的起始位置</div><div class="line">3. 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置</div><div class="line">4. 重复步骤3直到某一指针到达序列尾</div><div class="line">5. 将另一序列剩下的所有元素直接复制到合并序列尾</div></pre></td></tr></table></figure>
+<p>首先考虑下如何将二个有序数列合并。这个非常简单，只要从比较二个数列的第一个数，谁小就先取谁，取了后就在对应数列中删除这个数。然后再进行比较，如果有数列为空，那直接将另一个数列的数据依次取出即可。</p>
+<p>解决了合并有序数列问题，再来看归并排序，其的基本思路就是将数组分成二组A，B，如果这二组组内的数据都是有序的，就可以很方便的将这二组数据进行排序。那么如何让这二组组内数据有序呢？</p>
+<p>可以将A，B组各自再分成二组。依次类推，当分出来的小组只有一个数据时，可以认为这个小组组内已经达到了有序，然后再合并相邻的二个小组就可以了。这样通过先递归的分解数列，再合并数列就完成了归并排序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;limits.h&gt;                // 包含极限值的头文件，这里用到了无穷大INT_MAX</div><div class="line"></div><div class="line">// 分类 -------------- 内部比较排序</div><div class="line">// 数据结构 ---------- 数组</div><div class="line">// 最差时间复杂度 ---- O(nlogn)</div><div class="line">// 最优时间复杂度 ---- O(nlogn)</div><div class="line">// 平均时间复杂度 ---- O(nlogn)</div><div class="line">// 所需辅助空间 ------ O(n)</div><div class="line">// 稳定性 ------------ 稳定</div><div class="line"></div><div class="line">int L[10];    // 两个子数组定义成全局变量（辅助存储空间,大小正比于元素的个数）</div><div class="line">int R[10];</div><div class="line"></div><div class="line">void merge(int A[], int left, int middle, int right)// 合并两个已排好序的数组A[left...middle]和A[middle+1...right]</div><div class="line">&#123;</div><div class="line">    int n1 = middle - left + 1;     // 两个数组的大小</div><div class="line">    int n2 = right - middle;</div><div class="line">    for (int i = 0; i &lt; n1; i++)    // 把两部分分别拷贝到两个数组中</div><div class="line">        L[i] = A[left + i];</div><div class="line">    for (int j = 0; j &lt; n2; j++)</div><div class="line">        R[j] = A[middle + j + 1];</div><div class="line">    L[n1] = INT_MAX;                // 使用无穷大作为哨兵值放在子数组的末尾</div><div class="line">    R[n2] = INT_MAX;                // 这样可以免去检查某个子数组是否已读完的步骤</div><div class="line">    int i = 0;</div><div class="line">    int j = 0;</div><div class="line">    for (int k = left; k &lt;= right; k++) // 依次比较两个子数组中的值，每次取出更小的那一个放入原数组</div><div class="line">    &#123;</div><div class="line">        if (L[i] &lt;= R[j]) </div><div class="line">        &#123;</div><div class="line">            A[k] = L[i];</div><div class="line">            i++;</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">            A[k] = R[j];</div><div class="line">            j++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">void mergesort_recursion(int A[], int left, int right) // 递归实现的归并排序(自顶向下)</div><div class="line">&#123;</div><div class="line">    int middle = (left + right) / 2;</div><div class="line">    if (left &lt; right)          // 当待排序的序列长度为1时(left == right)，递归“开始回升”</div><div class="line">    &#123;</div><div class="line">        mergesort_recursion(A, left, middle);</div><div class="line">        mergesort_recursion(A, middle + 1, right);</div><div class="line">        merge(A, left, middle, right);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">void mergesort_iteration(int A[], int left, int right)  // 非递归(迭代)实现的归并排序(自底向上)</div><div class="line">&#123;</div><div class="line">    int low, middle, high;    // 子数组索引,前一个为A[low...middle],后一个子数组为A[middle+1...high]</div><div class="line">    for (int size = 1; size &lt;= right - left; size *= 2) // 子数组的大小初始为1,每轮翻倍</div><div class="line">    &#123;</div><div class="line">        low = left;</div><div class="line">        while (low + size - 1 &lt;= right - 1 )// 后一个子数组存在(需要归并)</div><div class="line">        &#123;</div><div class="line">            middle = low + size - 1;    </div><div class="line">            high = middle + size;        </div><div class="line">            if (high &gt; right)            　　// 后一个子数组大小不足size</div><div class="line">                high = right;</div><div class="line">            merge(A, low, middle, high);</div><div class="line">            low = high + 1;                　// 前一个子数组索引向后移动</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int A1[] = &#123; 6, 5, 3, 1, 8, 7, 2, 4 &#125;;    // 从小到大归并排序</div><div class="line">    int A2[] = &#123; 6, 5, 3, 1, 8, 7, 2, 4 &#125;;    </div><div class="line">    int n1 = sizeof(A1) / sizeof(int);</div><div class="line">    int n2 = sizeof(A2) / sizeof(int);</div><div class="line">    mergesort_recursion(A1, 0, n1 - 1);       // 递归实现</div><div class="line">    mergesort_iteration(A2, 0, n2 - 1);       // 非递归实现</div><div class="line">    printf(&quot;递归实现的归并排序结果：&quot;);</div><div class="line">    for (int i = 0; i &lt; n1; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;,A1[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    printf(&quot;非递归实现的归并排序结果：&quot;);</div><div class="line">    for (int i = 0; i &lt; n2; i++)</div><div class="line">    &#123;</div><div class="line">        printf(&quot;%d &quot;, A2[i]);</div><div class="line">    &#125;</div><div class="line">    printf(&quot;\n&quot;);</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>图解：<br><img src="/2017/05/22/常用排序算法/010.gif" alt=""></p>
+<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h2><p>呸，看不懂，等老夫解决数据结构之后来干你！</p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>你也给我等着…</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习随笔/" rel="tag"># 学习随笔</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/13/深入HEXO博客配置/" rel="next" title="深入HEXO博客配置">
+                <i class="fa fa-chevron-left"></i> 深入HEXO博客配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/31/近期学习规划以及总结/" rel="prev" title="近期学习规划以及总结">
+                近期学习规划以及总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="CSeventh" />
+          <p class="site-author-name" itemprop="name">CSeventh</p>
+           
+              <p class="site-description motion-element" itemprop="description">遇见你的时候</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在开头"><span class="nav-number">1.</span> <span class="nav-text">写在开头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内部排序"><span class="nav-number">2.</span> <span class="nav-text">内部排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序算法的稳定性（腾讯校招2016笔试题曾考过）"><span class="nav-number">3.</span> <span class="nav-text">排序算法的稳定性（腾讯校招2016笔试题曾考过）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">4.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序的改进：鸡尾酒排序"><span class="nav-number">5.</span> <span class="nav-text">冒泡排序的改进：鸡尾酒排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">5.1.</span> <span class="nav-text">选择排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">6.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序的改进：二分插入排序"><span class="nav-number">7.</span> <span class="nav-text">插入排序的改进：二分插入排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序的更高效改进：希尔排序"><span class="nav-number">8.</span> <span class="nav-text">插入排序的更高效改进：希尔排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">9.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆排序"><span class="nav-number">10.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">11.</span> <span class="nav-text">快速排序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSeventh</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cyt0Ay2m7';
+      var conf = '8016be65e45e5622d8f2625f4a609045';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

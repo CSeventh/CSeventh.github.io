@@ -1,0 +1,833 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="学习随笔," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="声明本文章仅供参考，写此博客主要是为了记录本人的iOS学习历程，如果感兴趣的话可以看下源码：GitHub地址 介绍 使用了AFNetworking，以及MBProgressHUD第三方库。 懒加载的使用。 学习阶段：4.19 - 5.4。  使用首先上主要代码,后面再对部分内容进行扩展： 1234567891011121314151617181920212223242526272829303132">
+<meta name="keywords" content="学习随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON与MBP的使用">
+<meta property="og:url" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/index.html">
+<meta property="og:site_name" content="One Room">
+<meta property="og:description" content="声明本文章仅供参考，写此博客主要是为了记录本人的iOS学习历程，如果感兴趣的话可以看下源码：GitHub地址 介绍 使用了AFNetworking，以及MBProgressHUD第三方库。 懒加载的使用。 学习阶段：4.19 - 5.4。  使用首先上主要代码,后面再对部分内容进行扩展： 1234567891011121314151617181920212223242526272829303132">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/0.png">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/1.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/2.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/3.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/4.gif">
+<meta property="og:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/5.jpeg">
+<meta property="og:updated_time" content="2017-05-12T13:36:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSON与MBP的使用">
+<meta name="twitter:description" content="声明本文章仅供参考，写此博客主要是为了记录本人的iOS学习历程，如果感兴趣的话可以看下源码：GitHub地址 介绍 使用了AFNetworking，以及MBProgressHUD第三方库。 懒加载的使用。 学习阶段：4.19 - 5.4。  使用首先上主要代码,后面再对部分内容进行扩展： 1234567891011121314151617181920212223242526272829303132">
+<meta name="twitter:image" content="http://yoursite.com/2017/05/12/JSON与MBP的使用/0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/12/JSON与MBP的使用/"/>
+
+
+
+
+
+  <title>JSON与MBP的使用 | One Room</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">One Room</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个人没什么不能征服。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/JSON与MBP的使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CSeventh">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="One Room">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSON与MBP的使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T14:33:34+08:00">
+                2017-05-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS学习/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/05/12/JSON与MBP的使用/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/12/JSON与MBP的使用/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>本文章仅供参考，写此博客主要是为了记录本人的iOS学习历程，如果感兴趣的话可以看下源码：<br><a href="https://github.com/CSeventh/getJSON" target="_blank" rel="external">GitHub地址</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><ul>
+<li>使用了AFNetworking，以及MBProgressHUD第三方库。</li>
+<li>懒加载的使用。</li>
+<li>学习阶段：4.19 - 5.4。</li>
+</ul>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>首先上主要代码,后面再对部分内容进行扩展：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">- (IBAction)get:(id)sender &#123;</div><div class="line">    NSString *URLString=@&quot;http://vedio.wxz.name/api/vedio.html&quot;;</div><div class="line">    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];</div><div class="line">    ((AFJSONResponseSerializer *)manager.responseSerializer).removesKeysWithNullValues = YES;//有什么作用？  将所有的NSNull值变成nil：json解析的时候，会把null解析成NSNull对象，如果向这个NSNull对象发送消息的话会崩。</div><div class="line">    </div><div class="line">    //设置超时时间</div><div class="line">    [manager.requestSerializer willChangeValueForKey:@&quot;timeoutInterval&quot;];</div><div class="line">    manager.requestSerializer.timeoutInterval = 15;//这个值是什么意思？  网络请求超时时间设置为5s</div><div class="line">    [manager.requestSerializer didChangeValueForKey:@&quot;timeoutInterval&quot;];</div><div class="line"></div><div class="line">    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];</div><div class="line">    hud.label.text = @&quot;加载中...&quot;;</div><div class="line">    //请求</div><div class="line">    [manager GET:URLString parameters:nil progress:nil</div><div class="line">         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)</div><div class="line">         &#123;</div><div class="line">             if ([responseObject[@&quot;msg&quot;] isEqualToString:@&quot;ok&quot;])</div><div class="line">             &#123;</div><div class="line">                 //_datas=[[NSMutableArray alloc]init]; //不使用懒加载的话可以在这里或者GET之前初始化数据</div><div class="line">                 for(NSDictionary *eachDic in responseObject[@&quot;links&quot;])</div><div class="line">                 &#123;</div><div class="line">                     NSLog(@&quot;%@&quot;,eachDic);</div><div class="line">                     Vedio *vedio=[[Vedio alloc]initWithDic:eachDic];</div><div class="line">                     [self.datas addObject:vedio];//换成_datas会怎么样？  懒加载调用 没有初始化不会输出数据</div><div class="line">                     _showButton.hidden=false;  //不隐藏</div><div class="line">                 &#125;</div><div class="line">                 hud.label.text = @&quot;加载成功！&quot;;</div><div class="line">                 [hud hideAnimated:YES afterDelay:0.2];</div><div class="line">             &#125;</div><div class="line">             else</div><div class="line">             &#123;</div><div class="line">                 hud.label.text = @&quot;加载错误！&quot;;</div><div class="line">                 NSLog(@&quot;数据错误&quot;);</div><div class="line">                 [hud hideAnimated:YES afterDelay:0.5];</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)</div><div class="line">         &#123;</div><div class="line">             hud.label.text = @&quot;网络超时&quot;;</div><div class="line">             NSLog(@&quot;网络超时&quot;);</div><div class="line">             [hud hideAnimated:YES afterDelay:0.5];</div><div class="line">         &#125;</div><div class="line">     ];</div><div class="line">&#125;</div><div class="line">- (IBAction)show:(id)sender &#123;</div><div class="line">    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];</div><div class="line">    hud.label.text = @&quot;打印中...&quot;;</div><div class="line">    NSLog(@&quot;%@&quot;,_datas[1]);</div><div class="line">        for (Vedio *vedio in _datas) &#123;</div><div class="line">            NSLog(@&quot;标题:%@，图片:%@&quot;,vedio.name,vedio.img);</div><div class="line">        &#125;</div><div class="line">    [hud hideAnimated:YES afterDelay:0.3];</div><div class="line">&#125;</div><div class="line"></div><div class="line">//为什么要有这个方法？   懒加载</div><div class="line">-(NSMutableArray *)datas&#123;</div><div class="line">    if (!_datas) &#123;</div><div class="line">        _datas=[[NSMutableArray alloc]init];</div><div class="line">    &#125;</div><div class="line">    return _datas;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行界面：<br><img src="/2017/05/12/JSON与MBP的使用/0.png" alt=""></p>
+<p>##AFNetworking简介<br>想要进行iOS开发的我，不知道NSUrlRequest、不知道NSUrlConnection、也不知道NSURLSession…（说不下去了…真的什么都不知道…）但是现在只要是请求网络都会想到使用AFN。关于AFN虽然用的次数少，甚至真正的实现还是得参照着别人的代码来写<code>咳！没毛病！</code>。但是还是加深了对AFN的了解，首先是它的优缺点：</p>
+<ol>
+<li><p>优点：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">1. 维护和使用者比较多</div><div class="line">2. 对ARC支持</div><div class="line">3. 对Block的支持非常好</div><div class="line">4. 专门对异步请求的支持</div><div class="line">5. 支持基于URL 缓存</div><div class="line">6. 图片以及NSURLCache AFCache缓存使用</div><div class="line">7. 支持后台下载，缓存离线请求的支持（SDURLCache）</div><div class="line">8. 对JSON支持比较好</div><div class="line">9. 对实现的http请求比较容易</div><div class="line">10. 对HTTPS 的支持</div></pre></td></tr></table></figure>
+</li>
+<li><p>缺点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">* 是基于Foundation框架的NSURLConnection对网络进行的封装，不是用的底层的CFNetwork进行的封装，扩展功能可能稍微少一些。</div><div class="line">* 但是在http上的网络支持已经足够。</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ul>
+<li><p>设置超时</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[manager.requestSerializer willChangeValueForKey:@&quot;timeoutInterval&quot;];</div><div class="line">manager.requestSerializer.timeoutInterval = 15;//这个值是什么意思？  网络请求超时时间设置为5s</div><div class="line">[manager.requestSerializer didChangeValueForKey:@&quot;timeoutInterval&quot;];</div></pre></td></tr></table></figure>
+</li>
+<li><p>GET请求网络数据方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">[manager GET:URLString parameters:nil progress:nil</div><div class="line">     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)</div><div class="line">     &#123;</div><div class="line">         if ([responseObject[@&quot;msg&quot;] isEqualToString:@&quot;ok&quot;])</div><div class="line">         &#123;</div><div class="line">             //_datas=[[NSMutableArray alloc]init]; //不使用懒加载的话可以在这里或者GET之前初始化数据</div><div class="line">             for(NSDictionary *eachDic in responseObject[@&quot;links&quot;])</div><div class="line">             &#123;</div><div class="line">                 NSLog(@&quot;%@&quot;,eachDic);</div><div class="line">                 Vedio *vedio=[[Vedio alloc]initWithDic:eachDic];</div><div class="line">                 [self.datas addObject:vedio];//换成_datas会怎么样？  懒加载调用 没有初始化不会输出数据</div><div class="line">                 _showButton.hidden=false;  //不隐藏</div><div class="line">             &#125;</div><div class="line">             hud.label.text = @&quot;加载成功！&quot;;</div><div class="line">             [hud hideAnimated:YES afterDelay:0.2];</div><div class="line">         &#125;</div><div class="line">         else</div><div class="line">         &#123;</div><div class="line">             hud.label.text = @&quot;加载错误！&quot;;</div><div class="line">             NSLog(@&quot;数据错误&quot;);</div><div class="line">             [hud hideAnimated:YES afterDelay:0.5];</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)</div><div class="line">     &#123;</div><div class="line">         hud.label.text = @&quot;网络超时&quot;;</div><div class="line">         NSLog(@&quot;网络超时&quot;);</div><div class="line">         [hud hideAnimated:YES afterDelay:0.5];</div><div class="line">     &#125;</div><div class="line"> ];</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##MBProgressHUD简介<br>MBProgressHUD是一个显示HUD窗口的第三方类库，用于在执行一些后台任务时，在程序中显示一个表示进度的loading视图和两个可选的文本提示的HUD窗口。</p>
+<h3 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h3><h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">typedef enum &#123;</div><div class="line">    MBProgressHUDModeIndeterminate,	//系统自带的指示器（默认），没有进度，只能不停的转菊花</div><div class="line">    MBProgressHUDModeDeterminate,	//饼图</div><div class="line">    MBProgressHUDModeDeterminateHorizontalBar,	//进度条</div><div class="line">    MBProgressHUDModeAnnularDeterminate,	//圆环</div><div class="line">    MBProgressHUDModeCustomView,	//自定义视图</div><div class="line">    MBProgressHUDModeText	//只显示文字</div><div class="line">&#125; MBProgressHUDMode;</div></pre></td></tr></table></figure>
+<ul>
+<li>系统自带指示器<br><img src="/2017/05/12/JSON与MBP的使用/1.gif" alt=""><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeIndeterminate;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>饼图<br><img src="/2017/05/12/JSON与MBP的使用/2.gif" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeDeterminate;</div></pre></td></tr></table></figure>
+</li>
+<li><p>进度条<br><img src="/2017/05/12/JSON与MBP的使用/3.gif" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeDeterminateHorizontalBar;</div></pre></td></tr></table></figure>
+</li>
+<li><p>圆环<br><img src="/2017/05/12/JSON与MBP的使用/4.gif" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeAnnularDeterminate;</div></pre></td></tr></table></figure>
+</li>
+<li><p>只显示文字<br><img src="/2017/05/12/JSON与MBP的使用/5.jpeg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hud.mode = MBProgressHUDModeText;</div><div class="line">hud.labelText = @&quot;MBProgressHUDModeText&quot;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="初始化及其他基本使用"><a href="#初始化及其他基本使用" class="headerlink" title="初始化及其他基本使用"></a>初始化及其他基本使用</h4><ul>
+<li><p>初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];</div><div class="line">hud.label.text = @&quot;加载中...&quot;;//菊花文本</div></pre></td></tr></table></figure>
+</li>
+<li><p>隐藏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[hud hideAnimated:YES afterDelay:0.2];//afterDelay的值为停留时间。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="懒加载简介"><a href="#懒加载简介" class="headerlink" title="懒加载简介"></a>懒加载简介</h2><ul>
+<li>懒加载可以定义为：延时加载，即当对象需要用到的时候再去加载。其实就是重写对象的get方法,当系统或者开发者调用对象的get方法时，再去加载对象。</li>
+</ul>
+<h3 id="懒加载的优点"><a href="#懒加载的优点" class="headerlink" title="懒加载的优点"></a>懒加载的优点</h3><ul>
+<li>不需将对象的实例化写到viewDidLoad中，可以简化代码，增强代码的可读性。</li>
+<li>对系统的内存占用率会减小。</li>
+<li>对象的实例化在getter方法中，各司其职，降低耦合性。</li>
+</ul>
+<h3 id="懒加载使用对比"><a href="#懒加载使用对比" class="headerlink" title="懒加载使用对比"></a>懒加载使用对比</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//如果不使用懒加载</div><div class="line">...</div><div class="line"> _datas=[[NSMutableArray alloc]init];//不使用懒加载的话可以在这里或者GET之前初始化数据</div><div class="line">...</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//使用懒加载</div><div class="line">-(NSMutableArray *)datas&#123;</div><div class="line">    //先判断对象当前是否为空，为空的话再去实例化对象。</div><div class="line">    if (!_datas) &#123;</div><div class="line">        _datas=[[NSMutableArray alloc]init];</div><div class="line">    &#125;</div><div class="line">    return _datas;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在本文的代码中我们可以发现，如果不使用懒加载，<code>datas</code>的初始化存在于<code>- (IBAction)get:(id)sender</code>方法中，这是在该对象的初始化后紧接着使用。但是在大多数情况下，一个对象的使用不会局限于此，甚至于在各种地方都需要调用，那么此时如果不使用懒加载的话则会浪费很多内存资源。而懒加载则无需担心这些，我们只需要在使用的时候<code>self.XXX</code>,系统会自动加载好对象。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习随笔/" rel="tag"># 学习随笔</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/11/关于博客的搭建/" rel="next" title="关于HEXO博客的搭建">
+                <i class="fa fa-chevron-left"></i> 关于HEXO博客的搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/13/深入HEXO博客配置/" rel="prev" title="深入HEXO博客配置">
+                深入HEXO博客配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="CSeventh" />
+          <p class="site-author-name" itemprop="name">CSeventh</p>
+           
+              <p class="site-description motion-element" itemprop="description">遇见你的时候</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#声明"><span class="nav-number">1.</span> <span class="nav-text">声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">3.0.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用-1"><span class="nav-number">3.0.2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模式"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#初始化及其他基本使用"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">初始化及其他基本使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#懒加载简介"><span class="nav-number">3.1.</span> <span class="nav-text">懒加载简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#懒加载的优点"><span class="nav-number">3.1.1.</span> <span class="nav-text">懒加载的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒加载使用对比"><span class="nav-number">3.1.2.</span> <span class="nav-text">懒加载使用对比</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CSeventh</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cyt0Ay2m7';
+      var conf = '8016be65e45e5622d8f2625f4a609045';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
